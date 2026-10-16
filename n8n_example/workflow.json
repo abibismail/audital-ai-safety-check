@@ -1,0 +1,55 @@
+{
+  "name": "Audital 4.0 | n8n Silent Precision Loss (Synthetic Demo)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "ca78744b-11b6-43dd-95d0-200000000001",
+      "name": "Run synthetic test",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [-460,160]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Fictional AI-invoice records. The large IDs are intentionally numeric JSON tokens.\n// No external data, API requests or credentials.\nconst approvedNumericJSON = '{\"invoice_id\":9007199254740992,\"amount\":\"149.00\"}';\nconst aiNumericJSON = '{\"invoice_id\":9007199254740993,\"amount\":\"149.00\"}';\n// A separate lossless representation, captured BEFORE lossy number parsing.\nconst approvedStringJSON = '{\"invoice_id\":\"9007199254740992\",\"amount\":\"149.00\"}';\nconst aiStringJSON = '{\"invoice_id\":\"9007199254740993\",\"amount\":\"149.00\"}';\nreturn [{json:{approvedNumericJSON,aiNumericJSON,approvedStringJSON,aiStringJSON,case:'SYNTHETIC_INVOICE_ID'}}];",
+        "mode": "runOnceForAllItems"
+      },
+      "id": "ca78744b-11b6-43dd-95d0-200000000002",
+      "name": "1 - Fictional AI invoice JSON",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-230,160]
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json;\nconst a = JSON.parse(input.approvedNumericJSON);\nconst b = JSON.parse(input.aiNumericJSON);\nconst naiveEqual = a.invoice_id === b.invoice_id;\nreturn [{json:{...input,naiveStatus:naiveEqual ? 'PASSED' : 'FAILED',naiveEqual,approvedParsed:String(a.invoice_id),aiParsed:String(b.invoice_id),unsafeNumeric:!Number.isSafeInteger(a.invoice_id)||!Number.isSafeInteger(b.invoice_id)}}];",
+        "mode": "runOnceForAllItems"
+      },
+      "id": "ca78744b-11b6-43dd-95d0-200000000003",
+      "name": "2 - Naive JSON.parse says PASS",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [0,160]
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json;\nconst parsedA = JSON.parse(input.approvedNumericJSON);\nconst parsedB = JSON.parse(input.aiNumericJSON);\n// This is a demonstration of a safe verification boundary, not an Audital npm integration.\n// Once digits are lost, no verifier can reconstruct the original value.\nconst unsafe = !Number.isSafeInteger(parsedA.invoice_id) || !Number.isSafeInteger(parsedB.invoice_id);\nconst numericStatus = unsafe ? 'INDETERMINATE' : (parsedA.invoice_id===parsedB.invoice_id?'PASSED':'FAILED');\n// If we retained original exact string IDs, comparing them produces a definite answer.\nconst stringA=JSON.parse(input.approvedStringJSON);\nconst stringB=JSON.parse(input.aiStringJSON);\nconst losslessStatus = stringA.invoice_id === stringB.invoice_id ? 'PASSED' : 'FAILED';\nreturn [{json:{case:input.case,naiveStatus:input.naiveStatus,naiveEqual:input.naiveEqual,approvedParsed:input.approvedParsed,aiParsed:input.aiParsed,numericStatus,losslessStatus,scope:'Synthetic invoice identifier only',why:'Standard JSON number parsing rounded distinct integers into the same unsafe JavaScript Number. Exact string IDs remain different.',disclaimer:'n8n Code-node demo, not an Audital production integration or live customer incident.'}}];",
+        "mode": "runOnceForAllItems"
+      },
+      "id": "ca78744b-11b6-43dd-95d0-200000000004",
+      "name": "3 - Safe boundary shows gap",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [260,160]
+    }
+  ],
+  "connections": {
+    "Run synthetic test": {"main":[[{"node":"1 - Fictional AI invoice JSON","type":"main","index":0}]]},
+    "1 - Fictional AI invoice JSON": {"main":[[{"node":"2 - Naive JSON.parse says PASS","type":"main","index":0}]]},
+    "2 - Naive JSON.parse says PASS": {"main":[[{"node":"3 - Safe boundary shows gap","type":"main","index":0}]]}
+  },
+  "active": false,
+  "settings": {"executionOrder":"v1"},
+  "pinData": {},
+  "tags": []
+}
