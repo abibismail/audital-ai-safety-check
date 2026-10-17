@@ -1,0 +1,26 @@
+name: Example 05 synthetic contract
+
+on:
+  pull_request:
+    paths:
+      - 'examples/05-universal-engine-showcase/**'
+      - 'README.md'
+      - 'SHA256SUMS.txt'
+      - '.github/workflows/example05-ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test three independent synthetic adapters
+        run: node --test examples/05-universal-engine-showcase/test.mjs
+      - name: Verify manifest digests
+        run: sha256sum --check SHA256SUMS.txt
