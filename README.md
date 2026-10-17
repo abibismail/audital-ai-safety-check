@@ -1,6 +1,6 @@
 # Audital AI Safety Check
 
-**Local second checks for AI-generated business data.** This public repository is the open, reproducible learning layer for Audital 4.0.
+**Open-ended local checks for automated state changes.** This public repository is the reproducible learning layer for Audital 4.0. Developers define the context; Audital explores the verification and remediation lifecycle.
 
 The idea is simple: valid JSON, a passing schema, or a green workflow run does not prove that a business-critical value stayed correct.
 
@@ -18,6 +18,7 @@ Audital is being explored as a reusable safety primitive for AI-powered work: co
 | [02 — 50-record payment batch](examples/02-payment-batch/) | Founders, agencies, operations | Grand totals can match while three records are wrong; local staging remediation fixes and reverifies all 50 |
 | [03 — CRM sync drift](examples/03-crm-sync-drift/) | Founders, agencies, CRM/RevOps teams | A sync can report success while a customer is linked to the wrong company; approval, apply, read-back and re-verification are required before `REMEDIATED` |
 | [04 — 10,000-SKU bounded autonomy](examples/04-ecommerce-bounded-autonomy/) | Founders, agencies, operations | 9,999 safe catalogue actions continue while one £499 → £49 price crash is isolated for approval |
+| [05 — Universal Engine Showcase](examples/05-universal-engine-showcase/) | Developers, agent builders, enterprise teams | One public educational `audital.protect()` reference primitive runs JSON repair, deployment rollback and fake-token revocation through three independent local adapters |
 
 The examples use fictional data and local execution. They do not claim live customer incidents or production writes.
 
