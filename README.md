@@ -8,6 +8,17 @@ This repository starts with one narrow, reproducible failure mode. More syntheti
 
 > **Important:** this is not the proprietary Audital Guard or Audital Instant product source, and it is not a claim that Audital can detect every AI error. The commercial verification kernel remains private while it is hardened.
 
+## Example gallery
+
+Audital is being explored as a reusable safety primitive for AI-powered work: compare an automated result with a trusted state, surface the exact deviation, perform only bounded remediation, then re-run the same invariant before calling the state fixed.
+
+| Example | Audience | Demonstrates |
+| --- | --- | --- |
+| [01 — JSON precision](#example-01--two-different-json-integers-one-false-match) | Developers | A valid-looking pipeline can lose numeric identity and create a false match |
+| [02 — 50-record payment batch](examples/02-payment-batch/) | Founders, agencies, operations | Grand totals can match while three records are wrong; local staging remediation fixes and reverifies all 50 |
+
+The examples use fictional data and local execution. They do not claim live customer incidents or production writes.
+
 ## Example 01 — two different JSON integers, one false match
 
 These two integer literals are different:
@@ -75,11 +86,21 @@ The workflow JSON has not yet been verified inside a live n8n instance. Until th
 
 ## Audital 4.0 direction
 
-The broader Audital 4.0 goal is to make independent second checks easy enough to insert into normal AI and automation workflows:
+The broader Audital 4.0 goal is to make a continuous safety loop easy enough to insert into normal AI and automation workflows:
 
 ```text
-trusted reference + generated output → deterministic check → PASS / FAIL / INDETERMINATE
+trusted reference + automated output
+        ↓
+       FIND
+        ↓
+bounded FIX where authorised
+        ↓
+      PROVE
+        ↓
+PASS / FAIL / INDETERMINATE / REMEDIATED
 ```
+
+Production remediation is intentionally gated behind authorised connectors, policy boundaries, read-back verification, and the private fail-closed kernel.
 
 The public examples are intentionally small. They are designed to be cloned, challenged, and reproduced without exposing Audital's private verification engine.
 
