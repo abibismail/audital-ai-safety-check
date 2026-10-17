@@ -17,6 +17,7 @@ Audital is being explored as a reusable safety primitive for AI-powered work: co
 | [01 — JSON precision](#example-01--two-different-json-integers-one-false-match) | Developers | A valid-looking pipeline can lose numeric identity and create a false match |
 | [02 — 50-record payment batch](examples/02-payment-batch/) | Founders, agencies, operations | Grand totals can match while three records are wrong; local staging remediation fixes and reverifies all 50 |
 | [03 — CRM sync drift](examples/03-crm-sync-drift/) | Founders, agencies, CRM/RevOps teams | A sync can report success while a customer is linked to the wrong company; approval, apply, read-back and re-verification are required before `REMEDIATED` |
+| [04 — 10,000-SKU bounded autonomy](examples/04-ecommerce-bounded-autonomy/) | Founders, agencies, operations | 9,999 safe catalogue actions continue while one £499 → £49 price crash is isolated for approval |
 
 The examples use fictional data and local execution. They do not claim live customer incidents or production writes.
 
