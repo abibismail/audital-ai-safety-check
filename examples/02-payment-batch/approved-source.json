@@ -1,0 +1,252 @@
+[
+  {
+    "invoice_id": "INV-001",
+    "customer_id": "CUS-1001",
+    "amount": "107.13"
+  },
+  {
+    "invoice_id": "INV-002",
+    "customer_id": "CUS-1002",
+    "amount": "114.26"
+  },
+  {
+    "invoice_id": "INV-003",
+    "customer_id": "CUS-1003",
+    "amount": "121.39"
+  },
+  {
+    "invoice_id": "INV-004",
+    "customer_id": "CUS-1004",
+    "amount": "128.52"
+  },
+  {
+    "invoice_id": "INV-005",
+    "customer_id": "CUS-1005",
+    "amount": "135.65"
+  },
+  {
+    "invoice_id": "INV-006",
+    "customer_id": "CUS-1006",
+    "amount": "142.78"
+  },
+  {
+    "invoice_id": "INV-007",
+    "customer_id": "CUS-1007",
+    "amount": "149.91"
+  },
+  {
+    "invoice_id": "INV-008",
+    "customer_id": "CUS-1008",
+    "amount": "157.04"
+  },
+  {
+    "invoice_id": "INV-009",
+    "customer_id": "CUS-1009",
+    "amount": "164.17"
+  },
+  {
+    "invoice_id": "INV-010",
+    "customer_id": "CUS-1010",
+    "amount": "171.30"
+  },
+  {
+    "invoice_id": "INV-011",
+    "customer_id": "CUS-1011",
+    "amount": "178.43"
+  },
+  {
+    "invoice_id": "INV-012",
+    "customer_id": "CUS-1012",
+    "amount": "185.56"
+  },
+  {
+    "invoice_id": "INV-013",
+    "customer_id": "CUS-1013",
+    "amount": "192.69"
+  },
+  {
+    "invoice_id": "INV-014",
+    "customer_id": "CUS-1014",
+    "amount": "199.82"
+  },
+  {
+    "invoice_id": "INV-015",
+    "customer_id": "CUS-1015",
+    "amount": "206.95"
+  },
+  {
+    "invoice_id": "INV-016",
+    "customer_id": "CUS-1016",
+    "amount": "214.08"
+  },
+  {
+    "invoice_id": "INV-017",
+    "customer_id": "CUS-1017",
+    "amount": "221.21"
+  },
+  {
+    "invoice_id": "INV-018",
+    "customer_id": "CUS-1018",
+    "amount": "228.34"
+  },
+  {
+    "invoice_id": "INV-019",
+    "customer_id": "CUS-1019",
+    "amount": "235.47"
+  },
+  {
+    "invoice_id": "INV-020",
+    "customer_id": "CUS-1020",
+    "amount": "242.60"
+  },
+  {
+    "invoice_id": "INV-021",
+    "customer_id": "CUS-1021",
+    "amount": "249.73"
+  },
+  {
+    "invoice_id": "INV-022",
+    "customer_id": "CUS-1022",
+    "amount": "256.86"
+  },
+  {
+    "invoice_id": "INV-023",
+    "customer_id": "CUS-1023",
+    "amount": "263.99"
+  },
+  {
+    "invoice_id": "INV-024",
+    "customer_id": "CUS-1024",
+    "amount": "271.12"
+  },
+  {
+    "invoice_id": "INV-025",
+    "customer_id": "CUS-1025",
+    "amount": "278.25"
+  },
+  {
+    "invoice_id": "INV-026",
+    "customer_id": "CUS-1026",
+    "amount": "285.38"
+  },
+  {
+    "invoice_id": "INV-027",
+    "customer_id": "CUS-1027",
+    "amount": "292.51"
+  },
+  {
+    "invoice_id": "INV-028",
+    "customer_id": "CUS-1028",
+    "amount": "299.64"
+  },
+  {
+    "invoice_id": "INV-029",
+    "customer_id": "CUS-1029",
+    "amount": "306.77"
+  },
+  {
+    "invoice_id": "INV-030",
+    "customer_id": "CUS-1030",
+    "amount": "313.90"
+  },
+  {
+    "invoice_id": "INV-031",
+    "customer_id": "CUS-1031",
+    "amount": "321.03"
+  },
+  {
+    "invoice_id": "INV-032",
+    "customer_id": "CUS-1032",
+    "amount": "328.16"
+  },
+  {
+    "invoice_id": "INV-033",
+    "customer_id": "CUS-1033",
+    "amount": "335.29"
+  },
+  {
+    "invoice_id": "INV-034",
+    "customer_id": "CUS-1034",
+    "amount": "342.42"
+  },
+  {
+    "invoice_id": "INV-035",
+    "customer_id": "CUS-1035",
+    "amount": "349.55"
+  },
+  {
+    "invoice_id": "INV-036",
+    "customer_id": "CUS-1036",
+    "amount": "356.68"
+  },
+  {
+    "invoice_id": "INV-037",
+    "customer_id": "CUS-1037",
+    "amount": "363.81"
+  },
+  {
+    "invoice_id": "INV-038",
+    "customer_id": "CUS-1038",
+    "amount": "370.94"
+  },
+  {
+    "invoice_id": "INV-039",
+    "customer_id": "CUS-1039",
+    "amount": "378.07"
+  },
+  {
+    "invoice_id": "INV-040",
+    "customer_id": "CUS-1040",
+    "amount": "385.20"
+  },
+  {
+    "invoice_id": "INV-041",
+    "customer_id": "CUS-1041",
+    "amount": "392.33"
+  },
+  {
+    "invoice_id": "INV-042",
+    "customer_id": "CUS-1042",
+    "amount": "399.46"
+  },
+  {
+    "invoice_id": "INV-043",
+    "customer_id": "CUS-1043",
+    "amount": "406.59"
+  },
+  {
+    "invoice_id": "INV-044",
+    "customer_id": "CUS-1044",
+    "amount": "413.72"
+  },
+  {
+    "invoice_id": "INV-045",
+    "customer_id": "CUS-1045",
+    "amount": "420.85"
+  },
+  {
+    "invoice_id": "INV-046",
+    "customer_id": "CUS-1046",
+    "amount": "427.98"
+  },
+  {
+    "invoice_id": "INV-047",
+    "customer_id": "CUS-1047",
+    "amount": "435.11"
+  },
+  {
+    "invoice_id": "INV-048",
+    "customer_id": "CUS-1048",
+    "amount": "442.24"
+  },
+  {
+    "invoice_id": "INV-049",
+    "customer_id": "CUS-1049",
+    "amount": "449.37"
+  },
+  {
+    "invoice_id": "INV-050",
+    "customer_id": "CUS-1050",
+    "amount": "456.50"
+  }
+]
