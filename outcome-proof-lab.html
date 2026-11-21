@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<title>Audital Outcome Proof Lab — 200 OK isn't VERIFIED</title>
+<meta name="description" content="An interactive, fully synthetic demo showing when automated GitHub actions are VERIFIED, NEEDS_VERIFICATION, or BLOCKED. No credentials or API calls.">
+<style>
+:root{--bg:#071018;--panel:#0b1823;--panel2:#101f2d;--line:#283d4b;--text:#ecf8f3;--muted:#a2bcb9;--mint:#8ef5c9;--blue:#a4c8ff;--amber:#ffd18a;--red:#ffaba8;--radius:15px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--text);font:15px/1.6 system-ui,-apple-system,'Segoe UI',sans-serif;background:radial-gradient(ellipse 850px 450px at 62% -5%,#153c3a 0%,transparent 72%),var(--bg)}
+a{color:var(--mint);text-decoration-thickness:1px;text-underline-offset:3px}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--mint);outline-offset:3px}
+.wrap{max-width:1190px;padding:28px 26px 80px;margin:auto}.top{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}.brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:.18em}.logo{width:31px;height:31px;display:grid;place-items:center;color:#073127;border:1px solid #a0ffe1;background:var(--mint);border-radius:9px;letter-spacing:0;font-size:18px}.toplinks{display:flex;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--muted)}.toplinks a{color:var(--muted)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--mint);border:1px solid #345e59;border-radius:99px;background:#102925;padding:5px 12px;font-size:11px;letter-spacing:.13em;text-transform:uppercase;font-weight:800;margin-top:66px}.eyebrow:before{content:'';width:7px;height:7px;border-radius:50%;background:var(--mint)}h1{max-width:1020px;font-size:clamp(39px,5.5vw,74px);font-weight:800;letter-spacing:-.06em;line-height:1.08;margin:22px 0 15px}.accent{color:var(--mint)}.lead{font-size:18px;color:var(--muted);max-width:840px;margin:0}.truth{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 42px}.truth span{font-size:12px;color:#c9ddd8;border:1px solid #355052;padding:5px 11px;border-radius:99px}
+.workspace{display:grid;grid-template-columns:minmax(250px,350px) 1fr;gap:18px}.panel{background:linear-gradient(150deg,var(--panel),#08131f);border:1px solid var(--line);border-radius:var(--radius);padding:22px;min-width:0}.panel h2{font-size:15px;letter-spacing:.01em;margin:0 0 6px}.muted{color:var(--muted)}.mini{font-size:12px}.scenarios{display:grid;gap:8px;margin-top:18px}.scenario{display:block;width:100%;padding:13px 15px;text-align:left;border:1px solid #304450;border-radius:10px;color:var(--text);background:#0b1722;transition:background .15s,border-color .15s}.scenario:hover{border-color:#557675;background:#132633}.scenario[aria-pressed="true"]{background:#16362f;border-color:var(--mint);box-shadow:inset 4px 0 var(--mint)}.scenario strong{display:block;font-size:13px}.scenario small{display:block;color:var(--muted);font-size:11px;margin-top:3px}.scenario .tag{display:inline-block;float:right;color:var(--amber);font:700 10px/1.5 ui-monospace,monospace}
+.demo-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}.mode{font:700 10px/1.5 ui-monospace,monospace;color:var(--mint);letter-spacing:.09em;padding:6px 8px;border:1px solid #35675b;border-radius:6px;background:#123128}.provider{margin-top:18px;border:1px solid var(--line);border-radius:11px;background:#081420;padding:15px}.k{color:var(--muted);font:600 11px/1.8 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.06em}.provider-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.val{font:600 15px/1.6 ui-monospace,monospace;overflow-wrap:anywhere}.success{color:var(--mint)}.bad{color:var(--red)}.warn{color:var(--amber)}
+.checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:17px 0}.check{border:1px solid #28424c;background:#0d202b;border-radius:9px;padding:11px 12px;display:flex;align-items:center;gap:10px;cursor:pointer;min-height:57px}.check input{accent-color:#88edc1;width:16px;height:16px;flex:none}.check span{font-size:12px}.runrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.primary{border:1px solid #c1ffe8;background:var(--mint);color:#08261e;border-radius:9px;padding:12px 17px;font-weight:800}.primary:hover{background:#c2ffe7}.subtle{border:1px solid #42615f;background:transparent;color:var(--text);border-radius:9px;padding:11px 16px}.subtle:hover{background:#173037}.status{display:none;border-radius:12px;border:1px solid #6d6350;background:#272219;padding:18px;margin-top:20px}.status.on{display:block}.status[data-result="VERIFIED"]{border-color:#278666;background:#0b3028}.status[data-result="BLOCKED"]{border-color:#94595a;background:#311b24}.status[data-result="NEEDS_VERIFICATION"]{border-color:#ab8253;background:#31261a}.statusline{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:6px}.bigstatus{font:800 17px/1.4 ui-monospace,monospace;overflow-wrap:anywhere}.statustext{color:#dce6e0;font-size:14px}.badge{font:700 10px/1.3 ui-monospace,monospace;letter-spacing:.09em;border:1px solid #78928b;border-radius:99px;padding:4px 7px;color:#bcd5ca}
+.lens{margin-top:17px}.lens h3{font-size:13px;margin:0 0 9px}.evidence{margin:0;background:#07151d;border:1px solid var(--line);border-radius:9px;padding:15px;white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;max-height:360px;overflow:auto;color:#c6e5db}.below{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:18px}.below h2{font-size:19px;margin:0 0 8px}.below p{margin:0;color:var(--muted)}.footer{margin-top:32px;border-top:1px solid var(--line);padding-top:17px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:12px}
+@media(max-width:850px){.workspace{grid-template-columns:1fr}.scenarios{grid-template-columns:repeat(2,minmax(0,1fr))}.eyebrow{margin-top:42px}.below{grid-template-columns:1fr}}
+@media(max-width:570px){.wrap{padding:20px 14px 48px}.scenarios{grid-template-columns:1fr}.checks{grid-template-columns:1fr}.provider-grid{grid-template-columns:1fr;gap:9px}h1{font-size:38px}.lead{font-size:16px}.panel{padding:17px}.eyebrow{margin-top:32px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header class="top"><div class="brand"><span class="logo">A</span>AUDITAL</div><nav class="toplinks" aria-label="External links"><a href="https://github.com/abibismail/audital-ai-safety-check">Open-source examples</a><a href="https://github.com/abibismail/audital-ai-safety-check/issues/new">Share a failure case</a></nav></header>
+<div class="eyebrow">Public Outcome Proof Lab · v0.1 · simulated</div>
+<h1>Your bot got <span class="accent">200 OK.</span><br>Did the right thing happen?</h1>
+<p class="lead">Pick a failure, change the evidence and run the decision. A provider response and a closed GitHub issue aren't the same as proving your authorised run caused the change.</p>
+<div class="truth"><span>✓ No signup</span><span>✓ No external API calls</span><span>✓ Reproducible fixtures</span><span>⚠ Not the production Guard kernel</span></div>
+<div class="workspace">
+<section class="panel" aria-label="Failure scenarios"><h2>01 / Pick a scenario</h2><div class="muted mini">Each uses fictional, isolated GitHub-style fixture data.</div><div class="scenarios" id="scenarios">
+<button class="scenario" type="button" data-id="missing-cause" aria-pressed="true"><span class="tag">200 OK</span><strong>Closed ≠ proven</strong><small>External state matches, cause unclear</small></button>
+<button class="scenario" type="button" data-id="replay" aria-pressed="false"><span class="tag">REPLAY</span><strong>Claim already spent</strong><small>Attempt to dispatch a second time</small></button>
+<button class="scenario" type="button" data-id="expired" aria-pressed="false"><span class="tag">STALE</span><strong>Approval expired</strong><small>Five-minute approval window exceeded</small></button>
+<button class="scenario" type="button" data-id="no-readback" aria-pressed="false"><span class="tag">TIMEOUT</span><strong>Readback unavailable</strong><small>Write may have happened, no proof</small></button>
+<button class="scenario" type="button" data-id="complete" aria-pressed="false"><span class="tag">FIXTURE</span><strong>Complete synthetic proof</strong><small>See what is required to mark VERIFIED</small></button>
+</div></section>
+<section class="panel" aria-label="Interactive proof evaluation"><div class="demo-head"><div><h2>02 / Inspect the evidence</h2><div class="muted mini">Toggle any evidence field; run the check again.</div></div><span class="mode">SIMULATED · NO LIVE EFFECTS</span></div>
+<div class="provider"><div class="k">Fictional action · sandbox-example / issue #42</div><div class="provider-grid"><div><div class="k">Provider response</div><div class="val" id="provider-val">200 OK</div></div><div><div class="k">Observed GitHub issue</div><div class="val" id="issue-val">CLOSED</div></div><div><div class="k">Dispatch</div><div class="val" id="dispatch-val">RECORDED</div></div></div></div>
+<div class="checks" id="checks">
+<label class="check"><input type="checkbox" data-field="approval" checked><span>Valid, unexpired approval</span></label>
+<label class="check"><input type="checkbox" data-field="target" checked><span>Target and policy match</span></label>
+<label class="check"><input type="checkbox" data-field="claim" checked><span>Single-use claim available</span></label>
+<label class="check"><input type="checkbox" data-field="dispatched" checked><span>Write was dispatched</span></label>
+<label class="check"><input type="checkbox" data-field="readback" checked><span>Independent state readback</span></label>
+<label class="check"><input type="checkbox" data-field="causal"><span>Run-specific causation established</span></label>
+</div>
+<div class="runrow"><button class="primary" id="run" type="button">Evaluate outcome →</button><button class="subtle" id="reset" type="button">Reset scenario</button><button class="subtle" id="copy" type="button">Copy evidence JSON</button></div>
+<section class="status" id="status" aria-live="polite"><div class="statusline"><span class="badge">SIMULATED RESULT</span><span class="bigstatus" id="status-name"></span></div><div class="statustext" id="status-reason"></div></section>
+<section class="lens"><h3>03 / Inspect the decision record</h3><pre class="evidence" id="evidence" aria-live="polite">Select a scenario and run the check to inspect its JSON decision record.</pre></section>
+</section>
+</div>
+<div class="below"><section class="panel"><h2>What would count as real proof?</h2><p>An actual deployment must establish approver identity, target/snapshot binding, durable claim, controlled dispatch, independent provider observation and reliable causal attribution to the specific run. These checkbox values are synthetic assertions, not cryptographic attestations.</p></section><section class="panel"><h2>Break it. Tell us what failed.</h2><p>Run the complete-proof fixture, switch off causal attribution, then rerun. If you maintain n8n, GitHub Actions or autonomous workflows, <a href="https://github.com/abibismail/audital-ai-safety-check/issues/new">describe the false-positive or failure mode you would test next</a>. Please use fictional examples and never post customer data or secrets.</p></section></div>
+<footer class="footer"><span>Audital · Connect → Run → Prove · Public educational preview</span><span>Simulation, not a customer integration or verified production execution. Source: <a href="https://github.com/abibismail/audital-ai-safety-check">GitHub</a></span></footer>
+</main>
+<script>
+'use strict';
+const FIXTURES = Object.freeze({
+  'missing-cause': {approval:true,target:true,claim:true,dispatched:true,readback:true,causal:false,providerOk:true,closed:true},
+  replay: {approval:true,target:true,claim:false,dispatched:false,readback:false,causal:false,providerOk:false,closed:false},
+  expired: {approval:false,target:true,claim:true,dispatched:false,readback:false,causal:false,providerOk:false,closed:false},
+  'no-readback': {approval:true,target:true,claim:true,dispatched:true,readback:false,causal:false,providerOk:true,closed:null},
+  complete: {approval:true,target:true,claim:true,dispatched:true,readback:true,causal:true,providerOk:true,closed:true}
+});
+const FIELDS = Object.freeze(['approval','target','claim','dispatched','readback','causal']);
+function evaluateProof(p) {
+  // Never mark BLOCKED after a possible external effect: we cannot establish no-effect.
+  if (!p.dispatched) {
+    if (!p.approval || !p.target || !p.claim) return {outcome:'BLOCKED',reason:'No effect dispatched. The approval, target binding, or single-use claim did not pass preflight.'};
+    return {outcome:'NEEDS_VERIFICATION',reason:'Preflight is satisfied, but no external effect was dispatched or independently observed.'};
+  }
+  if (!p.approval || !p.target || !p.claim) return {outcome:'NEEDS_VERIFICATION',reason:'A write may have occurred despite an invalid authority boundary. Flag for investigation; never mark BLOCKED without no-effect proof.'};
+  if (!p.readback) return {outcome:'NEEDS_VERIFICATION',reason:'The provider may have returned 200 OK, but independent observation is unavailable. No safe automatic retry.'};
+  if (p.closed !== true) return {outcome:'NEEDS_VERIFICATION',reason:'Independent observation does not establish the intended closed state for this run.'};
+  if (!p.causal) return {outcome:'NEEDS_VERIFICATION',reason:'Issue appears closed, but a run-specific causal link has not been established. Time order and actor identity alone are insufficient.'};
+  if (!p.providerOk) return {outcome:'NEEDS_VERIFICATION',reason:'Contradictory provider acknowledgement and observed outcome; requires reconciliation.'};
+  return {outcome:'VERIFIED',reason:'All required synthetic evidence flags agree. This is a fixture-only outcome, not cryptographic proof or a real GitHub execution.'};
+}
+let selected = 'missing-cause';
+let evidenceJson = '';
+function current() {
+  const p = {...FIXTURES[selected]};
+  for (const field of FIELDS) p[field] = document.querySelector('input[data-field="'+field+'"]').checked;
+  return p;
+}
+function displayProvider(p) {
+  const prov = document.getElementById('provider-val');
+  prov.textContent = p.providerOk ? '200 OK' : 'NO 200';
+  prov.className = 'val '+(p.providerOk?'success':'warn');
+  const issue = document.getElementById('issue-val');
+  issue.textContent = p.closed === true ? 'CLOSED' : p.closed === false ? 'OPEN' : 'UNOBSERVED';
+  issue.className = 'val '+(p.closed===true?'success':'warn');
+  const dispatch = document.getElementById('dispatch-val');
+  dispatch.textContent = p.dispatched ? 'RECORDED' : 'NONE';
+  dispatch.className = 'val '+(p.dispatched?'success':'warn');
+}
+function loadScenario(id) {
+  if (!Object.prototype.hasOwnProperty.call(FIXTURES,id)) return;
+  selected=id;
+  const p=FIXTURES[id];
+  for (const field of FIELDS) document.querySelector('input[data-field="'+field+'"]').checked = p[field];
+  for (const btn of document.querySelectorAll('.scenario')) btn.setAttribute('aria-pressed',String(btn.dataset.id===id));
+  document.getElementById('status').classList.remove('on');
+  evidenceJson='';
+  document.getElementById('evidence').textContent='Click “Evaluate outcome” to see the complete decision record for '+id+'.';
+  document.getElementById('copy').textContent='Copy evidence JSON';
+  displayProvider(p);
+}
+function run() {
+  const p=current();
+  const verdict=evaluateProof(p);
+  const record={schema:'audital-public-proof-lab/v0.1',mode:'SIMULATED',fixture:selected,resource:'sandbox-example/issues/42',provider:{status:p.providerOk?'200 OK':'unavailable',issueState:p.closed===true?'CLOSED':p.closed===false?'OPEN':'UNKNOWN'},evidence:{approvalFresh:p.approval,targetBound:p.target,claimUnused:p.claim,dispatchRecorded:p.dispatched,independentReadback:p.readback,runSpecificCausation:p.causal},result:{outcome:verdict.outcome,reason:verdict.reason},verifiedLiveAction:false,cryptographicAttestation:false,networkCalls:0};
+  evidenceJson=JSON.stringify(record,null,2);
+  document.getElementById('evidence').textContent=evidenceJson;
+  const box=document.getElementById('status');box.dataset.result=verdict.outcome;box.classList.add('on');
+  document.getElementById('status-name').textContent=verdict.outcome;
+  document.getElementById('status-reason').textContent=verdict.reason;
+  displayProvider(p);
+}
+for (const b of document.querySelectorAll('.scenario')) b.addEventListener('click',()=>loadScenario(b.dataset.id));
+for (const c of document.querySelectorAll('input[data-field]')) c.addEventListener('change',()=>{document.getElementById('status').classList.remove('on'); evidenceJson=''; document.getElementById('evidence').textContent='Evidence changed. Run the check again.'; displayProvider(current());});
+document.getElementById('run').addEventListener('click',run);
+document.getElementById('reset').addEventListener('click',()=>loadScenario(selected));
+document.getElementById('copy').addEventListener('click',async()=>{
+  if(!evidenceJson){document.getElementById('copy').textContent='Run check first';return;}
+  try{if(!navigator.clipboard || !navigator.clipboard.writeText) throw new Error('Clipboard unavailable'); await navigator.clipboard.writeText(evidenceJson); document.getElementById('copy').textContent='Copied JSON ✓';}
+  catch{const a=document.createElement('textarea');a.value=evidenceJson;a.setAttribute('readonly','');a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();const ok=document.execCommand('copy');a.remove();document.getElementById('copy').textContent=ok?'Copied JSON ✓':'Select JSON below';}
+});
+window.AuditalPublicLab=Object.freeze({evaluateProof,fixtures:FIXTURES}); // Read-only teaching API for local developer tests.
+loadScenario('missing-cause');
+</script>
+</body>
+</html>
