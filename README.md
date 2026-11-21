@@ -1,5 +1,7 @@
 # Audital AI Safety Check
 
+> **NEW — [Outcome Proof Lab](outcome-proof-lab.html): 200 OK ≠ VERIFIED.** A free, offline interactive demo of replay, expired approval, missing readback and missing causal attribution. [Download the HTML](outcome-proof-lab.html) and open it in any browser; no signup, external services, or keys. See [how to test it](OUTCOME_PROOF_LAB.md) and [share a failure case](https://github.com/abibismail/audital-ai-safety-check/issues/6). **Synthetic teaching demo only — not the production Guard engine.**
+
 **Open-ended local checks for automated state changes.** This public repository is the reproducible learning layer for Audital 4.0. Developers define the context; Audital explores the verification and remediation lifecycle.
 
 The idea is simple: valid JSON, a passing schema, or a green workflow run does not prove that a business-critical value stayed correct.
