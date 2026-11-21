@@ -1,0 +1,35 @@
+name: Public Outcome Proof Lab
+
+on:
+  pull_request:
+    paths:
+      - 'outcome-proof-lab.html'
+      - 'tests/outcome-proof-lab.test.mjs'
+      - '.github/workflows/outcome-proof-lab.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'outcome-proof-lab.html'
+      - 'tests/outcome-proof-lab.test.mjs'
+      - '.github/workflows/outcome-proof-lab.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-lab:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify synthetic state-machine and no-network boundaries
+        run: node --test tests/outcome-proof-lab.test.mjs
+      - name: Validate embedded browser JavaScript
+        run: |
+          node -e "const fs=require('fs');const vm=require('vm');const s=fs.readFileSync('outcome-proof-lab.html','utf8');const match=s.match(/<script>([\\s\\S]*?)<\\/script>/);if(!match)process.exit(1);new vm.Script(match[1]);"
